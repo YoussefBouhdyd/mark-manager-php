@@ -21,6 +21,21 @@ body {
     --main-bg-color: #f1f5f9;
 }
 
+::-webkit-scrollbar {
+    width: 5px;
+    background-color: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    border-radius: 6px;
+    background-color: #0077ff80;
+    transition: var(--main-transition);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background-color: var(--blue-color);
+}
+
 /* Input Field  */
 .input-field {
     position: relative;
@@ -196,6 +211,25 @@ header .links {
     gap: 15px;
     font-size: 15px;
 }
+header .links.toggle {
+    right: 0;
+}
+@media (max-width: 767px) {
+    header .links {
+        position: fixed;
+        flex-direction: column;
+        justify-content: center;
+        right: -200px;
+        transition: var(--main-transition);
+        width: 200px;
+        gap: 25px;
+        top: 0;
+        height: 100%;
+        padding: 10px;
+        background: #dddddd61;
+    }
+}
+
 header .links .link a {
     text-decoration: none;
     color: var(--black-color);
@@ -203,6 +237,14 @@ header .links .link a {
 }
 header .links .link a:hover {
     color: var(--red-color);
+}
+header .links-btn {
+    background: transparent;
+    border: none;
+    font-size: 25px;
+    cursor: pointer;
+    position: relative;
+    z-index: 2;
 }
 /* End Header Styling  */
 
@@ -225,12 +267,30 @@ header .links .link a:hover {
 /* End Sign Section  */
 
 /* Start dashboard section  */
-.wrapper {
+
+.full-page {
     background: var(--main-bg-color);
+}
+
+.wrapper {
     height: calc(100vh - 100px);
     max-height: calc(100vh - 100px);
     display: flex;
     padding: 10px 15px;
+    gap: 15px;
+}
+
+@media (max-width: 991px) {
+    .wrapper {
+        flex-wrap: wrap;
+    }
+}
+
+@media (max-width: 767px) {
+    .wrapper {
+        max-height: none;
+        height: auto;
+    }
 }
 
 .wrapper .insert {
@@ -240,10 +300,17 @@ header .links .link a:hover {
     transition: var(--main-transition);
 }
 
+@media (max-width: 991px) {
+    .wrapper .insert {
+        width: 100%;
+    }
+}
+
 .wrapper .list-students {
     width: 100%;
     position: relative;
-    height: 100%;
+    display: flex;
+    flex-direction: column;
     transition: var(--main-transition);
 }
 
@@ -254,20 +321,33 @@ header .links .link a:hover {
 .wrapper .list-students .push-btn {
     position: absolute;
     top: 50%;
+    margin-left: -30px;
     transform: translateY(-50%) rotate(0deg);
-    margin-left: 5px;
     font-size: 25px;
     background: transparent;
     border: none;
     cursor: pointer;
     animation: bouncing-left-right 1s ease infinite reverse;
+    color: #00000055;
+    transition: var(--main-transition);
+}
+
+.wrapper .list-students .push-btn:hover {
+    color: var(--black-color);
+}
+
+.list-students .students-wrapper {
+    overflow-y: scroll;
+    padding-right: 10px;
 }
 
 .list-students .students-wrapper .student-card {
     padding: 15px;
     border: 1px solid #ccc;
     border-radius: 8px;
-    box-shadow: 0 2px 6px -1px rgba(0, 0, 0, 0.16), 0 1px 4px -1px rgba(0, 0, 0, 0.04);;
+    box-shadow: 0 2px 6px -1px rgba(0, 0, 0, 0.16), 0 1px 4px -1px rgba(0, 0, 0, 0.04);
+    background: #f0f0f0;
+    margin-bottom: 15px;
 }
 
 .list-students .students-wrapper .student-card .student-info {
@@ -275,18 +355,33 @@ header .links .link a:hover {
     gap: 10px;
 }
 
+@media (max-width: 767px) {
+    .list-students .students-wrapper .student-card .student-info{
+        flex-wrap: wrap;
+        gap: 0;
+    }
+}
+
 .list-students .students-wrapper .student-card .student-info > div {
     font-size: 20px;
     padding: 0 20px;
-    flex: 1;
+    width: 25%;
     height: 60px;
     display: flex;
     align-items: center;
 }
 
+@media (max-width: 767px) {
+    .list-students .students-wrapper .student-card .student-info > div {
+        width: 50%;
+    }
+}
+
 .list-students .students-wrapper .student-card .student-info > div > span {
     font-size: 12px;
     align-self: start;
+    display: flex;
+    gap: 5px;
 }
 
 .list-students .students-wrapper .student-card .student-control {
@@ -311,6 +406,14 @@ header .links .link a:hover {
 
 .list-students .students-wrapper .student-card .student-control .crud.delete:hover {
     background-color: var(--red-color);
+}
+
+.list-students .students-wrapper .student-card .student-control .crud.print {
+    background-color: #00000065;
+}
+
+.list-students .students-wrapper .student-card .student-control .crud.print:hover {
+    background-color: var(--black-color);
 }
 
 .list-students .students-wrapper .student-card .student-control .crud.update {
