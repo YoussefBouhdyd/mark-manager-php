@@ -62,7 +62,10 @@ try {
                                     <?=$record->info_note?>
                                 </div>
                                 <div>
-                                    <span><i class="fa-solid fa-check"></i> Grad:</span>
+                                    <span>
+                                        <?php if (($record->math_note+$record->info_note)/2 >= 10) echo "<i class='fa-solid fa-check' style='color:var(--green-color);'></i>";
+                                        else echo "<i class='fa-solid fa-xmark' style='color:var(--red-color);'></i>";
+                                        ?>Grad:</span>
                                     <?=round(($record->math_note+$record->info_note )/2 ,2)?>
                                 </div>
                             </div>
