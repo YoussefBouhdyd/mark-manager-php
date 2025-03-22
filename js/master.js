@@ -13,3 +13,16 @@ media.addEventListener("change", (_) => {
 });
 
 document.querySelector(".links-btn").onclick = (_) => document.querySelector(".links").classList.toggle("toggle");
+
+document.querySelectorAll(".crud.update").forEach(element => {
+    element.onclick = _ => {
+        document.querySelector(".update-form").style.display = "block";
+        document.querySelector(".container").style.filter = "blur(5px)";
+        document.querySelector("input[name='id']").value = element.dataset.id;
+    }
+});
+
+document.getElementById("out-update").onclick = _ => {
+    document.querySelector(".update-form").style.display = 'none';
+    document.querySelector(".container").style.filter = "blur(0px)";
+}

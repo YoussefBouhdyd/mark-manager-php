@@ -245,6 +245,12 @@ header .links-btn {
     cursor: pointer;
     position: relative;
     z-index: 2;
+    display: none;
+}
+@media (max-width: 767px) {
+    header .links-btn {
+        display: block;
+    }
 }
 /* End Header Styling  */
 
@@ -270,6 +276,7 @@ header .links-btn {
 
 .full-page {
     background: var(--main-bg-color);
+    position: relative;
 }
 
 .wrapper {
@@ -398,6 +405,7 @@ header .links-btn {
     border-radius: 6px;
     transition: var(--main-transition);
     cursor: pointer;
+    text-decoration: none;
 }
 
 .list-students .students-wrapper .student-card .student-control .crud.delete {
@@ -424,6 +432,55 @@ header .links-btn {
     background-color: var(--blue-color);
 }
 
+.no-record {
+    text-align: center;
+    padding: 20px;
+    font-size: .80rem;
+    color: #777;
+    text-transform: capitalize;
+}
+
+.update-form {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    border-radius: 8px;
+    background-color: #0075ff12;
+    padding: 10px;
+    display: none;
+}
+
+.update-form  form > div{
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.update-form .input-field {
+    margin-bottom: 0;
+}
+
+.update-form  form > .submit {
+    margin-bottom: 5px;
+}
+
+.update-form > button {
+    font-size: 13px;
+    border: none;
+    color: #f4433679;
+    font-weight: bold;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    transition: var(--main-transition);
+    background: transparent;
+    cursor: pointer;
+}
+
+.update-form > button:hover {
+    color: var(--red-color);
+}
 
 /* these classes used for Toggle the side push using Js */
 .insert-push { 
