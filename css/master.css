@@ -482,6 +482,65 @@ header .links-btn {
     color: var(--red-color);
 }
 
+.profile {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    padding: 10px;
+}
+
+.profile .avatar {
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    cursor: pointer;
+    color: #fff;
+    background: #888;
+    border-radius: 0 0 8px 8px;
+    transition: var(--main-transition);
+}
+
+.profile .avatar:hover {
+    background-color: #333;
+}
+
+.profile .avatar > i {
+    font-size: 20px;
+}
+
+.profile .options {
+    padding: 10px;
+    text-transform: capitalize;
+    background: #888;
+    color: white;
+    border-radius: 8px 8px 0 0;
+    border-bottom: 1px solid #ccc;
+    transition: var(--main-transition);
+    height: 0;
+    overflow: hidden;
+    padding: 0;
+    cursor: pointer;
+}
+
+.profile .options > a {
+    color: white;
+    text-decoration: none;
+}
+
+.profile .options:hover {
+    background-color: #333;
+}
+
+.profile .options.show-options {
+    padding: 10px;
+    height: auto;
+}
+
+.profile .options .log-out {
+
+}
+
 /* these classes used for Toggle the side push using Js */
 .insert-push { 
     width: 35% !important;

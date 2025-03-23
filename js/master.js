@@ -32,3 +32,7 @@ document.getElementById("out-update").onclick = _ => {
     document.querySelector(".update-form").style.display = 'none';
     document.querySelector(".container").style.filter = "blur(0px)";
 }
+
+document.querySelector(".avatar").onclick = _ => {
+    document.querySelector(".options").classList.toggle("show-options");
+}

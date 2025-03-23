@@ -1,3 +1,7 @@
+<?php
+session_start();
+if (isset($_SESSION['login'])) header("Location: dashboard.php");
+?>
 <!DOCTYPE html>
 <html lang="en">
 <?php require "base/head.html" ?>
@@ -33,7 +37,6 @@
 </body>
 </html>
 <?php
-session_start();
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $userName = $_POST['username'];
     $password = $_POST['password'];
