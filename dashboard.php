@@ -72,7 +72,7 @@ try {
                                 <div class="student-control">
                                     <a class="crud delete" href=<?="delete.php?id=$record->id"?>>Delete <i class="fa-regular fa-trash-can"></i></a>
                                     <a class="crud update" data-id=<?=$record->id?>>Update <i class="fa-regular fa-pen-to-square"></i></a>
-                                    <a class="crud print">Print <i class="fa-solid fa-print"></i></a>
+                                    <a class="crud print" href=<?="print.php?name=$record->name&math=$record->math_note&info=$record->info_note"?>>Print <i class="fa-solid fa-print"></i></a>
                                 </div>
                             </div>
                         <?php 
