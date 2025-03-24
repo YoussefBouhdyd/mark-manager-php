@@ -1,1 +1,3 @@
 fpdf186/
+images/*
+!images/logoFssm.png

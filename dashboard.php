@@ -6,7 +6,7 @@ if (!isset($_SESSION['login'])) {
 try {
     $pdo = new PDO("mysql:host=localhost;dbname=mydb;charset=utf8","youssef","12341234");
     $pdo->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
-    $records = $pdo->query("SELECT id,name,math_note,info_note FROM students")->fetchAll(PDO::FETCH_OBJ);
+    $records = $pdo->query("SELECT id,name,math_note,info_note,profile_path FROM students")->fetchAll(PDO::FETCH_OBJ);
 }catch (PDOException $error) {
     die("Error:".$error->getMessage());
 }
@@ -22,18 +22,22 @@ try {
             <div class="wrapper">
                 <section class="insert">
                     <h3 class="content-title">Add New Student</h3>
-                    <form action="add.php" method="post">
+                    <form action="add.php" method="post" enctype="multipart/form-data">
                         <div class="input-field">
                             <i class="fa-regular fa-user"></i>
                             <input type="text" placeholder="student" class="input-field" name="student-name" required>
                         </div>
                         <div class="input-field">
-                            <i class="fa-solid fa-square-root-variable"></i>
+                            <i class="fa-solid fw fa-square-root-variable"></i>
                             <input type="number" placeholder="Math" class="input-field" name="math" max=20 min=0 step=".25" required>
                         </div>
                         <div class="input-field">
                             <i class="fa-solid fw fa-laptop-code"></i>
                             <input type="number" placeholder="Computer Science" class="input-field" name="info" max=20 min=0 step=".25" required>
+                        </div>
+                        <div class="input-field">
+                            <i class="fa-regular fa-address-card"></i>
+                            <input type="file" class="input-field" name="student-image" required>
                         </div>
                         <input class="submit" type="submit" value="submit">
                     </form>
@@ -50,16 +54,20 @@ try {
                             <div class="student-card">
                                 <div class="student-info">
                                     <div>
+                                        <span><i class="fa-regular fa-address-card"></i> Profile:</span>
+                                        <img class="student-profile" src=<?=$record->profile_path;?>>
+                                    </div>
+                                    <div>
                                         <span><i class="fa-regular fa-user"></i> Name:</span>
                                         <?=$record->name;?>
                                     </div>
                                     <div>
                                         <span><i class="fa-solid fa-square-root-variable"></i> Math:</span>
-                                        <?=$record->math_note?>
+                                        <?=(float)$record->math_note?>
                                     </div>
                                     <div>
                                         <span><i class="fa-solid fw fa-laptop-code"></i> Computer:</span>
-                                        <?=$record->info_note?>
+                                        <?=(float)$record->info_note?>
                                     </div>
                                     <div>
                                         <span>

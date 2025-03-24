@@ -359,7 +359,7 @@ header .links-btn {
 
 .list-students .students-wrapper .student-card .student-info {
     display: flex;
-    gap: 10px;
+    gap: 5px;
 }
 
 @media (max-width: 767px) {
@@ -430,6 +430,10 @@ header .links-btn {
 
 .list-students .students-wrapper .student-card .student-control .crud.update:hover {
     background-color: var(--blue-color);
+}
+
+.student-profile {
+    width: 80px;;
 }
 
 .no-record {
@@ -535,10 +539,6 @@ header .links-btn {
 .profile .options.show-options {
     padding: 10px;
     height: auto;
-}
-
-.profile .options .log-out {
-
 }
 
 /* these classes used for Toggle the side push using Js */
