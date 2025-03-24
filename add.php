@@ -8,7 +8,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $math_note = $_POST['math'];
     $info_note = $_POST['info'];
     try {
-        $pdo = new PDO("mysql:host=localhost;dbname=mydb;charset-utf8",'youssef','12341234');
+        $pdo = new PDO("mysql:host=localhost;dbname=fssm;charset=utf8","root");
         $pdo->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
         $sql = "INSERT INTO students (name,math_note,info_note,profile_path) VALUES ('$name',$math_note,$info_note,'$imgPath')";
         $pdo->exec($sql);

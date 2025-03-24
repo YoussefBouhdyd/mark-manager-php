@@ -4,7 +4,7 @@ if (!isset($_SESSION['login'])) {
     header("Location: index.php");
 }
 try {
-    $pdo = new PDO("mysql:host=localhost;dbname=mydb;charset=utf8","youssef","12341234");
+    $pdo = new PDO("mysql:host=localhost;dbname=fssm;charset=utf8","root");
     $pdo->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
     $records = $pdo->query("SELECT id,name,math_note,info_note,profile_path FROM students")->fetchAll(PDO::FETCH_OBJ);
 }catch (PDOException $error) {

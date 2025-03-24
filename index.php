@@ -1,6 +1,24 @@
 <?php
 session_start();
 if (isset($_SESSION['login'])) header("Location: dashboard.php");
+try {
+    $pdo = new PDO("mysql:host=localhost;charset=utf8","root");
+    $pdo->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
+    $result = $pdo->query("SHOW DATABASES LIKE 'fssm'");
+    if ($result->rowCount() == 0) {
+    $pdo->exec("CREATE DATABASE `fssm`");
+    $pdo = new PDO("mysql:host=localhost;dbname=fssm;charset=utf8","root");
+    $pdo->exec("CREATE TABLE students (
+        id INT(11) AUTO_INCREMENT PRIMARY KEY,
+        name CHAR(30),
+        math_note DECIMAL(4,2) DEFAULT 0,
+        info_note DECIMAL(4,2) DEFAULT 0,
+        profile_path VARCHAR(50)
+    );");
+    } 
+}catch(PDOException $error) {
+    die("Error:".$error->getMessage());
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
