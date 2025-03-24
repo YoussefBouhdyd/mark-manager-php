@@ -15,9 +15,33 @@ try {
         info_note DECIMAL(4,2) DEFAULT 0,
         profile_path VARCHAR(50)
     );");
+    $pdo->exec("CREATE TABLE users (
+        id INT(11) AUTO_INCREMENT PRIMARY KEY,
+        username CHAR(30),
+        password VARCHAR(50)
+    );");
     } 
 }catch(PDOException $error) {
     die("Error:".$error->getMessage());
+}
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $userName = $_POST['username'];
+    $password = $_POST['password'];
+    try {
+        $pdo = new PDO("mysql:host=localhost;dbname=fssm;charset=utf8","root");
+        $pdo->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
+        $records = $pdo->query("SELECT username,password FROM users WHERE username = '$userName' AND password = '$password'")->fetchAll(PDO::FETCH_OBJ);
+    }catch (PDOException $error) {
+        die("Error:".$error->getMessage());
+    }
+    if (empty($records)) {
+        $flashMessage = "<p style='margin-bottom:10px;color: var(--red-color);'> incorrect username or password !</p>";
+    }
+    else {
+        $_SESSION['login'] = $userName;
+        header("Location: dashboard.php");
+    }
 }
 ?>
 <!DOCTYPE html>
@@ -47,27 +71,10 @@ try {
                     </div>
                     <button type="submit" class="submit">Sign In</button>
                 </form>
-                <a href="#" class="forget">You forget your password ?</a>
+                <a href="signUp.php" class="forget">You Don't Have An Account ?</a>
             </div>
         </div>
     </div>
     <!-- End Sign  -->
 </body>
 </html>
-<?php
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $userName = $_POST['username'];
-    $password = $_POST['password'];
-    $file = fopen("users.csv", "r");
-    while (($line = fgetcsv($file, 100, ",")) !== false) {
-        if ($line[0] === $userName && $line[1] === $password) {
-            $_SESSION['login'] = $userName;
-            fclose($file);
-            header('Location: dashboard.php');
-            break;
-        }
-    }
-    fclose($file);
-    $flashMessage = "<p style='margin-bottom:10px;color: var(--red-color);'> incorrect username or password !</p>";
-}
-?>
